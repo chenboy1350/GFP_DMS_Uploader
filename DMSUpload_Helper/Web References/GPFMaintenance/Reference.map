@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<DiscoveryClientResultsFile xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+  <Results>
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.ContractReference" url="http://mrc-tdbs-001/Prod_Dev/GPFMaintenance.asmx?wsdl" filename="GPFMaintenance.wsdl" />
+    <DiscoveryClientResult referenceType="System.Web.Services.Discovery.DiscoveryDocumentReference" url="http://mrc-tdbs-001/Prod_Dev/GPFMaintenance.asmx?disco" filename="GPFMaintenance.disco" />
+  </Results>
+</DiscoveryClientResultsFile>

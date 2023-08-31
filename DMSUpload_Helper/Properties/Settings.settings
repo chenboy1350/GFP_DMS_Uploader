@@ -1,0 +1,48 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DMSUpload_Helper.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="DMSUpload_Helper_GPFDBService_GPFDBService" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://mrc-tdbs-001.gpf.or.th/PROD_DEV/GPFDBService.asmx</Value>
+    </Setting>
+    <Setting Name="DMSUpload_Helper_GPFMaintenance_GPFMaintenance" Type="(Web Service URL)" Scope="Application">
+      <Value Profile="(Default)">https://mrc-tdbs-001.gpf.or.th/Prod_Dev/GPFMaintenance.asmx</Value>
+    </Setting>
+    <Setting Name="DFILEPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\Dms-dfile-001\temp_file\</Value>
+    </Setting>
+    <Setting Name="Domain" Type="System.String" Scope="User">
+      <Value Profile="(Default)">GPFBKK</Value>
+    </Setting>
+    <Setting Name="User" Type="System.String" Scope="User">
+      <Value Profile="(Default)">dmsdeploy</Value>
+    </Setting>
+    <Setting Name="Password" Type="System.String" Scope="User">
+      <Value Profile="(Default)">P@ss2022</Value>
+    </Setting>
+    <Setting Name="LogPath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">C:\DMSUploaderLog</Value>
+    </Setting>
+    <Setting Name="DMS_API" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dop-tngx-001.gpf.or.th/DMSDevAPI/DMS-API/</Value>
+    </Setting>
+    <Setting Name="PFILE_API" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://dms-dfile-001.gpf.or.th/DMS-FILESERVER-API/</Value>
+    </Setting>
+    <Setting Name="FilePath" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">D:\\TEST_FILE\\</Value>
+    </Setting>
+    <Setting Name="TempBatchFile" Type="System.String" Scope="User">
+      <Value Profile="(Default)">D:\\TEMP_FILE\\</Value>
+    </Setting>
+    <Setting Name="dmsp" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">ThePasswordToDecryptAndEncryptTheFile</Value>
+    </Setting>
+    <Setting Name="GPF_API" Type="System.String" Scope="User">
+      <Value Profile="(Default)">https://mrc-Tdbs-001.gpf.or.th/dmsapi/</Value>
+    </Setting>
+    <Setting Name="BDSPath" Type="System.String" Scope="User">
+      <Value Profile="(Default)">\\Dms-ddbs-001\temp_file\</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>

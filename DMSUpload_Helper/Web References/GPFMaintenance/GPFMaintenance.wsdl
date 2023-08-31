@@ -1,0 +1,1141 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="ChangePasswordDBService">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserNameIT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OLD_PasswordIT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NEW_PasswordIT" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordDBServiceResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangePasswordDBServiceResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordUser">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OLD_Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NEW_Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Server" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Database" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangePasswordUserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangePasswordUserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeParameterAS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemCode" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="OLD_Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="NEW_Password" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ChangeParameterASResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ChangeParameterASResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParameter1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParameterName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Parameter1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParameter1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetParameter1Result" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Parameter1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParameterBySoap">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParameterName" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="ParameterType" type="tns:ParameterValue" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:simpleType name="ParameterValue">
+        <s:restriction base="s:string">
+          <s:enumeration value="ParameterValue1" />
+          <s:enumeration value="ParameterValue2" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="GetParameterBySoapResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetParameterBySoapResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParameter2">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ParameterName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Parameter1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Parameter2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetParameter2Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetParameter2Result" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="Parameter1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Parameter2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetCon">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Type" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetConResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetConResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAuthen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserDetail" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserRole" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TestConnectAS400" type="tns:ConnectAS400" />
+            <s:element minOccurs="0" maxOccurs="1" name="ComputerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ArrayOfAnyType">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="anyType" nillable="true" />
+        </s:sequence>
+      </s:complexType>
+      <s:simpleType name="ConnectAS400">
+        <s:restriction base="s:string">
+          <s:enumeration value="Yes" />
+          <s:enumeration value="No" />
+        </s:restriction>
+      </s:simpleType>
+      <s:element name="CheckAuthenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckAuthenResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserDetail" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserRole" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAuthenByPass">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="UserDetail" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserRole" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ComputerName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAuthenByPassResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="CheckAuthenByPassResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserDetail" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="UserRole" type="tns:ArrayOfAnyType" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAuthenBySoap">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwd" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="TestConnectAS400" type="tns:ConnectAS400" />
+            <s:element minOccurs="0" maxOccurs="1" name="ComputerName" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CheckAuthenBySoapResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CheckAuthenBySoapResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemName">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="SystemName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemNameResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="GetSystemNameResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="SystemName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemNameBySoap">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetSystemNameBySoapResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetSystemNameBySoapResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Logoff">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="LogoffResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="LogoffResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertLog">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskDesc" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertLogResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="InsertLogResult" type="s:boolean" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertLogBySoap">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uid" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskName" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="TaskDesc" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="InsertLogBySoapResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="InsertLogBySoapResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Encrypt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uidAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwdAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptCitizen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Str" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptCitizenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptCitizenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecryptCitizen">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Str" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecryptCitizenResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DecryptCitizenResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Decrypt">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Str" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uidAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwdAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="DecryptResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="DecryptResult" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="ErrorMSG" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Encrypt1">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="Encrypt1Response">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="Encrypt1Result" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptType2String">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="value" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="uidAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwdAS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="EncryptType2StringResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="EncryptType2StringResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIT_User">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uidAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwdAS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIT_UserResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIT_UserResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIT_Password">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uidAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwdAS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIT_PasswordResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIT_PasswordResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIT_Connection">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="uidAS" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="pwdAS" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="GetIT_ConnectionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="GetIT_ConnectionResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="ChangePasswordDBServiceSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePasswordDBService" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordDBServiceSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordDBServiceResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordUserSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangePasswordUser" />
+  </wsdl:message>
+  <wsdl:message name="ChangePasswordUserSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangePasswordUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="ChangeParameterASSoapIn">
+    <wsdl:part name="parameters" element="tns:ChangeParameterAS" />
+  </wsdl:message>
+  <wsdl:message name="ChangeParameterASSoapOut">
+    <wsdl:part name="parameters" element="tns:ChangeParameterASResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetParameter1SoapIn">
+    <wsdl:part name="parameters" element="tns:GetParameter1" />
+  </wsdl:message>
+  <wsdl:message name="GetParameter1SoapOut">
+    <wsdl:part name="parameters" element="tns:GetParameter1Response" />
+  </wsdl:message>
+  <wsdl:message name="GetParameterBySoapSoapIn">
+    <wsdl:part name="parameters" element="tns:GetParameterBySoap" />
+  </wsdl:message>
+  <wsdl:message name="GetParameterBySoapSoapOut">
+    <wsdl:part name="parameters" element="tns:GetParameterBySoapResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetParameter2SoapIn">
+    <wsdl:part name="parameters" element="tns:GetParameter2" />
+  </wsdl:message>
+  <wsdl:message name="GetParameter2SoapOut">
+    <wsdl:part name="parameters" element="tns:GetParameter2Response" />
+  </wsdl:message>
+  <wsdl:message name="GetConSoapIn">
+    <wsdl:part name="parameters" element="tns:GetCon" />
+  </wsdl:message>
+  <wsdl:message name="GetConSoapOut">
+    <wsdl:part name="parameters" element="tns:GetConResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAuthenSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAuthen" />
+  </wsdl:message>
+  <wsdl:message name="CheckAuthenSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAuthenResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAuthenByPassSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAuthenByPass" />
+  </wsdl:message>
+  <wsdl:message name="CheckAuthenByPassSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAuthenByPassResponse" />
+  </wsdl:message>
+  <wsdl:message name="CheckAuthenBySoapSoapIn">
+    <wsdl:part name="parameters" element="tns:CheckAuthenBySoap" />
+  </wsdl:message>
+  <wsdl:message name="CheckAuthenBySoapSoapOut">
+    <wsdl:part name="parameters" element="tns:CheckAuthenBySoapResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemNameSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemName" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemNameSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemNameBySoapSoapIn">
+    <wsdl:part name="parameters" element="tns:GetSystemNameBySoap" />
+  </wsdl:message>
+  <wsdl:message name="GetSystemNameBySoapSoapOut">
+    <wsdl:part name="parameters" element="tns:GetSystemNameBySoapResponse" />
+  </wsdl:message>
+  <wsdl:message name="LogoffSoapIn">
+    <wsdl:part name="parameters" element="tns:Logoff" />
+  </wsdl:message>
+  <wsdl:message name="LogoffSoapOut">
+    <wsdl:part name="parameters" element="tns:LogoffResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertLogSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertLog" />
+  </wsdl:message>
+  <wsdl:message name="InsertLogSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertLogResponse" />
+  </wsdl:message>
+  <wsdl:message name="InsertLogBySoapSoapIn">
+    <wsdl:part name="parameters" element="tns:InsertLogBySoap" />
+  </wsdl:message>
+  <wsdl:message name="InsertLogBySoapSoapOut">
+    <wsdl:part name="parameters" element="tns:InsertLogBySoapResponse" />
+  </wsdl:message>
+  <wsdl:message name="EncryptSoapIn">
+    <wsdl:part name="parameters" element="tns:Encrypt" />
+  </wsdl:message>
+  <wsdl:message name="EncryptSoapOut">
+    <wsdl:part name="parameters" element="tns:EncryptResponse" />
+  </wsdl:message>
+  <wsdl:message name="EncryptCitizenSoapIn">
+    <wsdl:part name="parameters" element="tns:EncryptCitizen" />
+  </wsdl:message>
+  <wsdl:message name="EncryptCitizenSoapOut">
+    <wsdl:part name="parameters" element="tns:EncryptCitizenResponse" />
+  </wsdl:message>
+  <wsdl:message name="DecryptCitizenSoapIn">
+    <wsdl:part name="parameters" element="tns:DecryptCitizen" />
+  </wsdl:message>
+  <wsdl:message name="DecryptCitizenSoapOut">
+    <wsdl:part name="parameters" element="tns:DecryptCitizenResponse" />
+  </wsdl:message>
+  <wsdl:message name="DecryptSoapIn">
+    <wsdl:part name="parameters" element="tns:Decrypt" />
+  </wsdl:message>
+  <wsdl:message name="DecryptSoapOut">
+    <wsdl:part name="parameters" element="tns:DecryptResponse" />
+  </wsdl:message>
+  <wsdl:message name="Encrypt1SoapIn">
+    <wsdl:part name="parameters" element="tns:Encrypt1" />
+  </wsdl:message>
+  <wsdl:message name="Encrypt1SoapOut">
+    <wsdl:part name="parameters" element="tns:Encrypt1Response" />
+  </wsdl:message>
+  <wsdl:message name="EncryptType2StringSoapIn">
+    <wsdl:part name="parameters" element="tns:EncryptType2String" />
+  </wsdl:message>
+  <wsdl:message name="EncryptType2StringSoapOut">
+    <wsdl:part name="parameters" element="tns:EncryptType2StringResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIT_UserSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIT_User" />
+  </wsdl:message>
+  <wsdl:message name="GetIT_UserSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIT_UserResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIT_PasswordSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIT_Password" />
+  </wsdl:message>
+  <wsdl:message name="GetIT_PasswordSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIT_PasswordResponse" />
+  </wsdl:message>
+  <wsdl:message name="GetIT_ConnectionSoapIn">
+    <wsdl:part name="parameters" element="tns:GetIT_Connection" />
+  </wsdl:message>
+  <wsdl:message name="GetIT_ConnectionSoapOut">
+    <wsdl:part name="parameters" element="tns:GetIT_ConnectionResponse" />
+  </wsdl:message>
+  <wsdl:portType name="GPFMaintenanceSoap">
+    <wsdl:operation name="ChangePasswordDBService">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">แก้ไขรหัสผ่านใหม่สำหรับ User IT ทั้ง web.config / SQL / IT Maintenance (ByVal UserName As String, ByVal OLD_Password As String, ByVal NEW_Password As String, ByVal uid As String, ByVal pwd As String) As String</wsdl:documentation>
+      <wsdl:input message="tns:ChangePasswordDBServiceSoapIn" />
+      <wsdl:output message="tns:ChangePasswordDBServiceSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordUser">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">แก้ไข PWD บน SQL กับ IT Maintenance(ByVal UserName As String, ByVal OLD_Password As String, ByVal NEW_Password As String, ByVal uid As String, ByVal pwd As String) As String</wsdl:documentation>
+      <wsdl:input message="tns:ChangePasswordUserSoapIn" />
+      <wsdl:output message="tns:ChangePasswordUserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ChangeParameterAS">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">แก้ไข Parameter User AS400 ChangeParameterAS(ByVal SystemCode As String, ByVal UserName As String, ByVal OLD_Password As String, ByVal NEW_Password As String, ByVal uid As String, ByVal pwd As String) As String</wsdl:documentation>
+      <wsdl:input message="tns:ChangeParameterASSoapIn" />
+      <wsdl:output message="tns:ChangeParameterASSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParameter1">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ดึงข้อมูล Parameter ประเภทมีค่าเดียว(Code As String, ParameterName As String, ByRef Parameter1 As String, ByRef ErrorMSG As String) As Boolean</wsdl:documentation>
+      <wsdl:input message="tns:GetParameter1SoapIn" />
+      <wsdl:output message="tns:GetParameter1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParameterBySoap">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ดึงข้อมูล Parameter แบบระบุเองว่าต้องการตัวที่ 1 หรือ 2 รองรับการเรียกใช้งาน call XML (Code As String, ParameterName As String, ParameterType As ParameterValue) As String</wsdl:documentation>
+      <wsdl:input message="tns:GetParameterBySoapSoapIn" />
+      <wsdl:output message="tns:GetParameterBySoapSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetParameter2">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ดึงข้อมูล Parameter ประเภทมี 2 ค่า(Code As String, ParameterName As String, ByRef Parameter1 As String, ByRef Parameter2 As String, ByRef ErrorMSG As String) As Boolean</wsdl:documentation>
+      <wsdl:input message="tns:GetParameter2SoapIn" />
+      <wsdl:output message="tns:GetParameter2SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCon">
+      <wsdl:input message="tns:GetConSoapIn" />
+      <wsdl:output message="tns:GetConSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthen">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ตรวจสอบสิทธิ์การเข้าใช้ระบบ (ByRef UserDetail As ArrayList, ByRef UserRole As ArrayList, Code As String, uid As String, pwd As String, TestConnectAS400 As ConnectAS400, ComputerName As String, ByRef ErrorMSG As String) As Boolean </wsdl:documentation>
+      <wsdl:input message="tns:CheckAuthenSoapIn" />
+      <wsdl:output message="tns:CheckAuthenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthenByPass">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">CheckAuthenByPass(ByRef UserDetail As ArrayList, ByRef UserRole As ArrayList, ByVal Code As String, ByVal uid As String, ByVal ComputerName As String, ByRef ErrorMSG As String) As Boolean</wsdl:documentation>
+      <wsdl:input message="tns:CheckAuthenByPassSoapIn" />
+      <wsdl:output message="tns:CheckAuthenByPassSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthenBySoap">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ตรวจสอบสิทธิ์การเข้าใช้ระบบ รองรับการ Call XML (Code As String, uid As String, pwd As String, TestConnectAS400 As ConnectAS400, ComputerName As String) As String</wsdl:documentation>
+      <wsdl:input message="tns:CheckAuthenBySoapSoapIn" />
+      <wsdl:output message="tns:CheckAuthenBySoapSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemName">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ดึง ชื่อระบบ และ เวอชันโปรแกรม (ByRef SystemName As String, Code As String, ByRef ErrorMSG As String) As Boolean</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemNameSoapIn" />
+      <wsdl:output message="tns:GetSystemNameSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemNameBySoap">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">ดึง ชื่อระบบ และ เวอชันโปรแกรม  รองรับการ Call XML(Code As String, ByRef ErrorMSG As String) As String</wsdl:documentation>
+      <wsdl:input message="tns:GetSystemNameBySoapSoapIn" />
+      <wsdl:output message="tns:GetSystemNameBySoapSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Logoff">
+      <wsdl:input message="tns:LogoffSoapIn" />
+      <wsdl:output message="tns:LogoffSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertLog">
+      <wsdl:input message="tns:InsertLogSoapIn" />
+      <wsdl:output message="tns:InsertLogSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="InsertLogBySoap">
+      <wsdl:input message="tns:InsertLogBySoapSoapIn" />
+      <wsdl:output message="tns:InsertLogBySoapSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt">
+      <wsdl:input message="tns:EncryptSoapIn" />
+      <wsdl:output message="tns:EncryptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EncryptCitizen">
+      <wsdl:input message="tns:EncryptCitizenSoapIn" />
+      <wsdl:output message="tns:EncryptCitizenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="DecryptCitizen">
+      <wsdl:input message="tns:DecryptCitizenSoapIn" />
+      <wsdl:output message="tns:DecryptCitizenSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Decrypt">
+      <wsdl:input message="tns:DecryptSoapIn" />
+      <wsdl:output message="tns:DecryptSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt1">
+      <wsdl:input message="tns:Encrypt1SoapIn" />
+      <wsdl:output message="tns:Encrypt1SoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="EncryptType2String">
+      <wsdl:documentation xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">EncryptType2String(ByVal value As String, ByVal uidAS As String, ByVal pwdAS As String) As String</wsdl:documentation>
+      <wsdl:input message="tns:EncryptType2StringSoapIn" />
+      <wsdl:output message="tns:EncryptType2StringSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_User">
+      <wsdl:input message="tns:GetIT_UserSoapIn" />
+      <wsdl:output message="tns:GetIT_UserSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_Password">
+      <wsdl:input message="tns:GetIT_PasswordSoapIn" />
+      <wsdl:output message="tns:GetIT_PasswordSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_Connection">
+      <wsdl:input message="tns:GetIT_ConnectionSoapIn" />
+      <wsdl:output message="tns:GetIT_ConnectionSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="GPFMaintenanceSoap" type="tns:GPFMaintenanceSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangePasswordDBService">
+      <soap:operation soapAction="http://tempuri.org/ChangePasswordDBService" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordUser">
+      <soap:operation soapAction="http://tempuri.org/ChangePasswordUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeParameterAS">
+      <soap:operation soapAction="http://tempuri.org/ChangeParameterAS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParameter1">
+      <soap:operation soapAction="http://tempuri.org/GetParameter1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParameterBySoap">
+      <soap:operation soapAction="http://tempuri.org/GetParameterBySoap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParameter2">
+      <soap:operation soapAction="http://tempuri.org/GetParameter2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCon">
+      <soap:operation soapAction="http://tempuri.org/GetCon" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthen">
+      <soap:operation soapAction="http://tempuri.org/CheckAuthen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthenByPass">
+      <soap:operation soapAction="http://tempuri.org/CheckAuthenByPass" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthenBySoap">
+      <soap:operation soapAction="http://tempuri.org/CheckAuthenBySoap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemName">
+      <soap:operation soapAction="http://tempuri.org/GetSystemName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemNameBySoap">
+      <soap:operation soapAction="http://tempuri.org/GetSystemNameBySoap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logoff">
+      <soap:operation soapAction="http://tempuri.org/Logoff" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertLog">
+      <soap:operation soapAction="http://tempuri.org/InsertLog" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertLogBySoap">
+      <soap:operation soapAction="http://tempuri.org/InsertLogBySoap" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt">
+      <soap:operation soapAction="http://tempuri.org/Encrypt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptCitizen">
+      <soap:operation soapAction="http://tempuri.org/EncryptCitizen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecryptCitizen">
+      <soap:operation soapAction="http://tempuri.org/DecryptCitizen" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Decrypt">
+      <soap:operation soapAction="http://tempuri.org/Decrypt" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt1">
+      <soap:operation soapAction="http://tempuri.org/Encrypt1" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptType2String">
+      <soap:operation soapAction="http://tempuri.org/EncryptType2String" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_User">
+      <soap:operation soapAction="http://tempuri.org/GetIT_User" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_Password">
+      <soap:operation soapAction="http://tempuri.org/GetIT_Password" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_Connection">
+      <soap:operation soapAction="http://tempuri.org/GetIT_Connection" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="GPFMaintenanceSoap12" type="tns:GPFMaintenanceSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="ChangePasswordDBService">
+      <soap12:operation soapAction="http://tempuri.org/ChangePasswordDBService" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangePasswordUser">
+      <soap12:operation soapAction="http://tempuri.org/ChangePasswordUser" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ChangeParameterAS">
+      <soap12:operation soapAction="http://tempuri.org/ChangeParameterAS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParameter1">
+      <soap12:operation soapAction="http://tempuri.org/GetParameter1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParameterBySoap">
+      <soap12:operation soapAction="http://tempuri.org/GetParameterBySoap" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetParameter2">
+      <soap12:operation soapAction="http://tempuri.org/GetParameter2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetCon">
+      <soap12:operation soapAction="http://tempuri.org/GetCon" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthen">
+      <soap12:operation soapAction="http://tempuri.org/CheckAuthen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthenByPass">
+      <soap12:operation soapAction="http://tempuri.org/CheckAuthenByPass" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="CheckAuthenBySoap">
+      <soap12:operation soapAction="http://tempuri.org/CheckAuthenBySoap" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemName">
+      <soap12:operation soapAction="http://tempuri.org/GetSystemName" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSystemNameBySoap">
+      <soap12:operation soapAction="http://tempuri.org/GetSystemNameBySoap" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Logoff">
+      <soap12:operation soapAction="http://tempuri.org/Logoff" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertLog">
+      <soap12:operation soapAction="http://tempuri.org/InsertLog" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="InsertLogBySoap">
+      <soap12:operation soapAction="http://tempuri.org/InsertLogBySoap" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt">
+      <soap12:operation soapAction="http://tempuri.org/Encrypt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptCitizen">
+      <soap12:operation soapAction="http://tempuri.org/EncryptCitizen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="DecryptCitizen">
+      <soap12:operation soapAction="http://tempuri.org/DecryptCitizen" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Decrypt">
+      <soap12:operation soapAction="http://tempuri.org/Decrypt" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="Encrypt1">
+      <soap12:operation soapAction="http://tempuri.org/Encrypt1" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="EncryptType2String">
+      <soap12:operation soapAction="http://tempuri.org/EncryptType2String" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_User">
+      <soap12:operation soapAction="http://tempuri.org/GetIT_User" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_Password">
+      <soap12:operation soapAction="http://tempuri.org/GetIT_Password" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetIT_Connection">
+      <soap12:operation soapAction="http://tempuri.org/GetIT_Connection" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="GPFMaintenance">
+    <wsdl:port name="GPFMaintenanceSoap" binding="tns:GPFMaintenanceSoap">
+      <soap:address location="http://mrc-tdbs-001/Prod_Dev/GPFMaintenance.asmx" />
+    </wsdl:port>
+    <wsdl:port name="GPFMaintenanceSoap12" binding="tns:GPFMaintenanceSoap12">
+      <soap12:address location="http://mrc-tdbs-001/Prod_Dev/GPFMaintenance.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>
