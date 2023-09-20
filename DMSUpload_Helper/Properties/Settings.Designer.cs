@@ -23,38 +23,6 @@ namespace DMSUpload_Helper.Properties {
             }
         }
         
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://mrc-tdbs-001.gpf.or.th/PROD_DEV/GPFDBService.asmx")]
-        public string DMSUpload_Helper_GPFDBService_GPFDBService {
-            get {
-                return ((string)(this["DMSUpload_Helper_GPFDBService_GPFDBService"]));
-            }
-        }
-        
-        [global::System.Configuration.ApplicationScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://mrc-tdbs-001.gpf.or.th/Prod_Dev/GPFMaintenance.asmx")]
-        public string DMSUpload_Helper_GPFMaintenance_GPFMaintenance {
-            get {
-                return ((string)(this["DMSUpload_Helper_GPFMaintenance_GPFMaintenance"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\Dms-dfile-001\\temp_file\\")]
-        public string DFILEPath {
-            get {
-                return ((string)(this["DFILEPath"]));
-            }
-            set {
-                this["DFILEPath"] = value;
-            }
-        }
-        
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("GPFBKK")]
@@ -97,30 +65,6 @@ namespace DMSUpload_Helper.Properties {
         public string LogPath {
             get {
                 return ((string)(this["LogPath"]));
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dop-tngx-001.gpf.or.th/DMSDevAPI/DMS-API/")]
-        public string DMS_API {
-            get {
-                return ((string)(this["DMS_API"]));
-            }
-            set {
-                this["DMS_API"] = value;
-            }
-        }
-        
-        [global::System.Configuration.UserScopedSettingAttribute()]
-        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("https://dms-dfile-001.gpf.or.th/DMS-FILESERVER-API/")]
-        public string PFILE_API {
-            get {
-                return ((string)(this["PFILE_API"]));
-            }
-            set {
-                this["PFILE_API"] = value;
             }
         }
         
@@ -168,7 +112,69 @@ namespace DMSUpload_Helper.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("\\\\Dms-ddbs-001\\temp_file\\")]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://mrc-tdbs-001.gpf.or.th/PROD/GPFDBService.asmx")]
+        public string DMSUpload_Helper_GPFDBService_GPFDBService {
+            get {
+                return ((string)(this["DMSUpload_Helper_GPFDBService_GPFDBService"]));
+            }
+            set {
+                this["DMSUpload_Helper_GPFDBService_GPFDBService"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.WebServiceUrl)]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://mrc-tdbs-001.gpf.or.th/Prod/GPFMaintenance.asmx")]
+        public string DMSUpload_Helper_GPFMaintenance_GPFMaintenance {
+            get {
+                return ((string)(this["DMSUpload_Helper_GPFMaintenance_GPFMaintenance"]));
+            }
+            set {
+                this["DMSUpload_Helper_GPFMaintenance_GPFMaintenance"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\Dms-tfile-001\\temp_file\\")]
+        public string DFILEPath {
+            get {
+                return ((string)(this["DFILEPath"]));
+            }
+            set {
+                this["DFILEPath"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://dop-tngx-001.gpf.or.th/DMSTestAPI/DMS-API/")]
+        public string DMS_API {
+            get {
+                return ((string)(this["DMS_API"]));
+            }
+            set {
+                this["DMS_API"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("https://dms-tfile-001.gpf.or.th/DMS-FILESERVER-API/")]
+        public string PFILE_API {
+            get {
+                return ((string)(this["PFILE_API"]));
+            }
+            set {
+                this["PFILE_API"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("\\\\Dms-tdbs-001\\temp_file\\")]
         public string BDSPath {
             get {
                 return ((string)(this["BDSPath"]));

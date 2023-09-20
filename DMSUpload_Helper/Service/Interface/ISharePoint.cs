@@ -3,7 +3,8 @@
     public interface ISharePoint
     {
         void WrappedImpersonationContext(string domain, string us, string ps);
-        void Enter();
+        void Logon();
+        void Logout();
         bool IsInContext();
     }
 }

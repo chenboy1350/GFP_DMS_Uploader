@@ -15,12 +15,19 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Path = System.IO.Path;
+using DMSUpload_Helper.Service.Implement;
+using DMSUpload_Helper.Service.Interface;
+using System.Runtime.InteropServices;
+using System.Windows;
+using MessageBox = System.Windows.Forms.MessageBox;
+using Application = System.Windows.Forms.Application;
 
 namespace DMSUpload_Helper
 {
     public partial class FrmMain : Form
     {
         public DMSUploaderLibrary _lib;
+        private readonly ISharePoint _sharePoint = new SharePoint();
 
         public string PathFile = string.Empty;
         public string PathDirectory = string.Empty;
@@ -34,6 +41,8 @@ namespace DMSUpload_Helper
 
         private void FrmMain_Load(object sender, EventArgs e)
         {
+            _sharePoint.WrappedImpersonationContext(Properties.Settings.Default.Domain, Properties.Settings.Default.User, Properties.Settings.Default.Password);
+
             pgbStatus.Maximum = 100;
             pgbStatus.Minimum = 0;
             pgbStatus.Step = 1;
@@ -42,6 +51,7 @@ namespace DMSUpload_Helper
             lblMessageOK.Text = string.Empty;
             lblMessageMIS.Text = string.Empty;
             lblPercent.Text = string.Empty;
+            lblSelectFolder.Text = string.Empty;
 
             btnUpload.BackColor = Color.LightGray;
             btnVerify.BackColor = Color.LightGray;
@@ -56,6 +66,20 @@ namespace DMSUpload_Helper
             lblUsername.Text = _lib.username;
             lblDepartment.Text = _lib.department;
             lblAuthority.Text = _lib.authority;
+
+            string YearNow = "";
+            YearNow = DateTime.Now.Year.ToString();
+            int fYear = Convert.ToInt32(YearNow);
+            int bcYear = fYear + 543;
+            string allname = Convert.ToString(bcYear) + "-" + "Temp";
+
+            try
+            {
+                string LOCAL_Path = Properties.Settings.Default.TempBatchFile;
+                string LOCALPathFileTemp = Path.Combine(LOCAL_Path, allname);
+                Directory.Delete(LOCALPathFileTemp, true);
+            }
+            catch { }
         }
 
         private void BtnBrowseFile_Click(object sender, EventArgs e)
@@ -63,13 +87,19 @@ namespace DMSUpload_Helper
             try
             {
                 OpenFileDialog theDialog = new OpenFileDialog();
-                theDialog.Title = "Select Text File";
+                theDialog.Title = "Select Index File";
                 theDialog.Filter = "TXT files|*.txt";
                 theDialog.InitialDirectory = @"C:\";
                 if (theDialog.ShowDialog() == DialogResult.OK)
                 {
                     txtPathFile.Text = theDialog.FileName;
                     PathFile = theDialog.FileName;
+
+                    txtPathDirectory.Text = Path.GetDirectoryName(PathFile);
+                    PathDirectory = Path.GetDirectoryName(PathFile);
+
+                    lblSelectFolder.Text = "Selected Path";
+                    lblSelectFolder.ForeColor = Color.Green;
                 }
             }
             catch(Exception ex)
@@ -87,6 +117,9 @@ namespace DMSUpload_Helper
                 {
                     txtPathDirectory.Text = theDialog.SelectedPath;
                     PathDirectory = theDialog.SelectedPath;
+
+                    lblSelectFolder.Text = "Selected Path";
+                    lblSelectFolder.ForeColor = Color.Green;
                 }
             }
             catch (Exception ex)
@@ -121,15 +154,34 @@ namespace DMSUpload_Helper
                     if (Directory.Exists(txtPathDirectory.Text))
                     {
                         PathDirectory = txtPathDirectory.Text;
-                        MessageBox.Show("Exists");
+
+                        lblSelectFolder.Text = "Selected Path";
+                        lblSelectFolder.ForeColor = Color.Green;
                     }
                     else
                     {
-                        MessageBox.Show("Not Exists");
+                        lblSelectFolder.Text = "* Path not Found!";
+                        lblSelectFolder.ForeColor = Color.Red;
                     }
                 }
             }
             catch(Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
+
+        private void TxtPathDirectory_TextChanged(object sender, EventArgs e)
+        {
+            try
+            {
+                if (PathDirectory != txtPathDirectory.Text)
+                {
+                    lblSelectFolder.Text = "* Press ENTER to Confirm";
+                    lblSelectFolder.ForeColor = Color.Blue;
+                }
+            }
+            catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
@@ -283,6 +335,9 @@ namespace DMSUpload_Helper
                 IndexID = 0;
                 Unit = 0;
 
+                PathDirectory = string.Empty;
+                PathFile = string.Empty;
+
                 _lib.FilteredTextList = new List<TextFormatModel>();
                 _lib.tempDT = new DataTable();
                 _lib.taskType = string.Empty;
@@ -306,6 +361,18 @@ namespace DMSUpload_Helper
                 lblMessageMIS.Text = string.Empty;
                 lblMessage.Text = "READY";
                 lblPercent.Text = string.Empty;
+
+                lblSelectFolder.Text = string.Empty;
+
+                btnUpload.BackColor = Color.LightGray;
+                btnVerify.BackColor = Color.LightGray;
+                btnCancel.BackColor = Color.LightGray;
+                btnImport.BackColor = Color.LightGray;
+
+                btnUpload.ForeColor = Color.Black;
+                btnVerify.ForeColor = Color.Black;
+                btnCancel.ForeColor = Color.Black;
+                btnImport.ForeColor = Color.Black;
             }
             catch (Exception ex)
             {
@@ -324,13 +391,19 @@ namespace DMSUpload_Helper
             catch(Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                btnBrowseFile.Enabled = true;
+                btnBrowseDir.Enabled = true;
                 btnClear.Enabled = true;
+                btnCompare.Enabled = true;
+
+                txtPathDirectory.Enabled = true;
+
             }
         }
 
         private void BtnUpload_Click(object sender, EventArgs e)
         {
-            try
+            try 
             {
                 ButtonEneble(false);
                 Upload();
@@ -429,6 +502,12 @@ namespace DMSUpload_Helper
         {
             try
             {
+                string YearNow = "";
+                YearNow = DateTime.Now.Year.ToString();
+                int fYear = Convert.ToInt32(YearNow);
+                int bcYear = fYear + 543;
+                string allname = Convert.ToString(bcYear) + "-" + "Temp";
+
                 ButtonEneble(false);
                 DocumentBFModel documentBFModel = new DocumentBFModel()
                 {
@@ -445,6 +524,10 @@ namespace DMSUpload_Helper
                 _lib.CancleImportDMS(documentBFModel);
 
                 lblMessage.Text = "Canceled!";
+
+                string LOCAL_Path = Properties.Settings.Default.TempBatchFile;
+                string LOCALPathFileTemp = Path.Combine(LOCAL_Path, allname);
+                Directory.Delete(LOCALPathFileTemp, true);
 
                 btnClear.Enabled = true;
 
@@ -554,7 +637,8 @@ namespace DMSUpload_Helper
 
             try
             {
-                lblMessageOK.Text = "Starting...";
+                lblMessage.Text = "Starting...";
+                lblMessageOK.Text = string.Empty;
                 lblMessageMIS.Text = string.Empty;
                 Application.DoEvents();
 
@@ -569,15 +653,23 @@ namespace DMSUpload_Helper
                     int bcYear = fYear + 543;
                     string allname = Convert.ToString(bcYear) + "-" + "Temp";
 
-                    string LOCALPathFileTemp = LOCAL_Path + allname + "\\" + IndexID;
-                    string BDSPathFileTemp = BDS_Path + allname + "\\" + IndexID;
-                    string DFILEPathFileTemp = DFILE_Path + allname + "\\" + IndexID;
+                    string LOCALPathFileTemp = Path.Combine(LOCAL_Path, allname, IndexID.ToString());
+                    string BDSPathFileTemp = Path.Combine(BDS_Path, allname, IndexID.ToString());
+                    string DFILEPathFileTemp = Path.Combine(DFILE_Path, allname, IndexID.ToString());
 
                     if (!Directory.Exists(LOCALPathFileTemp))
                     {
                         Directory.CreateDirectory(LOCALPathFileTemp);
                     }
 
+                    foreach (string file in files)
+                    {
+                        string fileName = Path.GetFileName(file);
+
+                        _lib.FileIOCopyTo(file, LOCALPathFileTemp, fileName);
+                    }
+
+                    _sharePoint.Logon();
                     if (!Directory.Exists(BDSPathFileTemp))
                     {
                         Directory.CreateDirectory(BDSPathFileTemp);
@@ -589,14 +681,14 @@ namespace DMSUpload_Helper
                     }
 
                     int round = 0;
+                    string[] tmpfiles = Directory.GetFiles(LOCALPathFileTemp);
 
-                    foreach (string file in files)
+                    foreach (string file in tmpfiles)
                     {
                         string fileName = Path.GetFileName(file);
 
-                        _lib.Copy(file, LOCALPathFileTemp, fileName);
-                        _lib.Copy(file, BDSPathFileTemp, fileName);
-                        _lib.Copy(file, DFILEPathFileTemp, fileName);
+                        _lib.FileIOCopyTo(file, BDSPathFileTemp, fileName);
+                        _lib.FileIOCopyTo(file, DFILEPathFileTemp, fileName);
 
                         round += 1;
                         int tmp = ((round * 100) / files.Length);
@@ -606,6 +698,7 @@ namespace DMSUpload_Helper
                         lblMessageOK.Text = string.Format("> {0}", fileName);
                         Application.DoEvents();
                     }
+                    _sharePoint.Logout();
 
                     lblMessage.Text = "Uploaded!";
                     lblMessageOK.Text = string.Empty;
@@ -1015,7 +1108,9 @@ namespace DMSUpload_Helper
             //-----Init Log Variable----------
             string pathDirectory = Properties.Settings.Default.LogPath;
             string log_path = Path.Combine(pathDirectory, string.Format("Import2DMS_log_{0}.txt", DateTime.Now.Date.ToString("yyMMdd")));
+            string log_Debug_path = Path.Combine(pathDirectory, string.Format("Debug_log_{0}.txt", DateTime.Now.Date.ToString("yyMMdd")));
             StringBuilder log_content = new StringBuilder();
+            StringBuilder log_debug = new StringBuilder();
 
             //-----Start Import----------
             try
@@ -1023,9 +1118,6 @@ namespace DMSUpload_Helper
                 IndexFileVerifyDtModel verDT = new IndexFileVerifyDtModel();
                 verDT.VerifyStatus = 3;
                 verDT.IndexFileVerifyID = data.ID;
-
-                //------Write Log------
-                log_content.AppendFormat(Environment.NewLine);
 
                 _lib._batch.UpdateIndexFileVerify(verDT);
 
@@ -1045,7 +1137,7 @@ namespace DMSUpload_Helper
                     var group_data = detail.GroupBy(x => x.CaseNumber).Select(grp => grp.First()).OrderBy(or => or.CaseNumber).ToList();
 
                     //สร้าง case และ นำเข้าเอกสาร
-                    foreach (var item in group_data)
+                   foreach (var item in group_data)
                     {
                         #region Member
                         if (item.IsUnit != 1)
@@ -1664,6 +1756,12 @@ namespace DMSUpload_Helper
 
                             int attrid = (sttrid != string.Empty) ? Convert.ToInt32(sttrid) : 0;
 
+                            log_debug.AppendLine(string.Format("DocumentID : {0}", attr.DocumentID.ToString()));
+                            log_debug.AppendLine(string.Format("DocumentName : {0}", attr.DocumentName.ToString()));
+                            log_debug.AppendLine(string.Format("FileName : {0}", attr.FileName.ToString()));
+                            log_debug.AppendLine(string.Format("-----------------------"));
+                            log_debug.AppendLine(string.Format("AttachmentTypeDtID : {0}{1}", sttrid.ToString(), Environment.NewLine));
+
                             subitem.DocumentID = attr.DocumentID;
                             subitem.AttachmentDtID = (sttrid != string.Empty) ? Convert.ToInt32(sttrid) : 0;
                             _lib._batch.UpdateIndexFileVerifyDt_With_AttachmentDtID(subitem);
@@ -1740,7 +1838,6 @@ namespace DMSUpload_Helper
                                                             var fileInfo = new FileInfo(fileNod);
                                                             fileInfo.Delete();
                                                         }
-
                                                     }
                                                 }
                                                 Directory.Delete(Path.Combine($"{_lib.FilePath}{fileitem.DocumentID}_{5}_Temp"), true);
@@ -1789,11 +1886,13 @@ namespace DMSUpload_Helper
                 string pathLocal = Path.Combine($"{_lib.TempBatchFile}{dt_file_Del.SubFolder}\\{dt_file_Del.IndexFileVerifyID}");
                 Directory.Delete(pathLocal, true);
 
+                _sharePoint.Logon();
                 string pathBDS = Path.Combine($"{_lib.BDSFile}{dt_file_Del.SubFolder}\\{dt_file_Del.IndexFileVerifyID}");
                 Directory.Delete(pathBDS, true);
 
                 string pathDFILE = Path.Combine($"{_lib.DFILEFile}{dt_file_Del.SubFolder}\\{dt_file_Del.IndexFileVerifyID}");
                 Directory.Delete(pathDFILE, true);
+                _sharePoint.Logout();
 
                 var msg = new VerifyMessageModel();
                 msg.VerifyStatus = 1;
@@ -1811,15 +1910,28 @@ namespace DMSUpload_Helper
                         sw.WriteLine("Log created: {0}{1}", DateTime.Now.ToString(), Environment.NewLine);
                         sw.Write(log_content.ToString());
                     }
+
+                    using (StreamWriter sw = File.CreateText(log_Debug_path))
+                    {
+                        sw.WriteLine("Log created: {0}{1}", DateTime.Now.ToString(), Environment.NewLine);
+                        sw.Write(log_debug.ToString());
+                    }
                 }
                 else
                 {
                     File.Delete(log_path);
+                    File.Delete(log_Debug_path);
 
                     using (StreamWriter sw = File.CreateText(log_path))
                     {
                         sw.WriteLine("Log created: {0}{1}", DateTime.Now.ToString(), Environment.NewLine);
                         sw.Write(log_content.ToString());
+                    }
+
+                    using (StreamWriter sw = File.CreateText(log_Debug_path))
+                    {
+                        sw.WriteLine("Log created: {0}{1}", DateTime.Now.ToString(), Environment.NewLine);
+                        sw.Write(log_debug.ToString());
                     }
                 }
             }
@@ -1860,6 +1972,30 @@ namespace DMSUpload_Helper
                     }
                 }
             }
+        }
+
+        [DllImport("User32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("User32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void PanelTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private void Label5_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private void PictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

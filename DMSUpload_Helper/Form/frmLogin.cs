@@ -2,6 +2,7 @@
 using DMSUpload_Helper.Service.Implement;
 using DMSUpload_Helper.Service.Interface;
 using System;
+using System.Runtime.InteropServices;
 using System.Windows.Forms;
 
 namespace DMSUpload_Helper
@@ -21,9 +22,6 @@ namespace DMSUpload_Helper
 
         private void FrmLogin_Load(object sender, EventArgs e)
         {
-            _sharePoint.WrappedImpersonationContext(Properties.Settings.Default.Domain, Properties.Settings.Default.User, Properties.Settings.Default.Password);
-            _sharePoint.Enter();
-
             txtUsername.KeyPress += TextBox_KeyPress;
             txtPassword.KeyPress += TextBox_KeyPress;
 
@@ -66,18 +64,22 @@ namespace DMSUpload_Helper
         {
             try
             {
+                ButtonEnable(false);
                 if (_lib.Authentication(txtUsername.Text, txtPassword.Text))
                 {
                     FrmMain frmMain = new FrmMain();
                     frmMain._lib = _lib;
                     Hide();
                     frmMain.ShowDialog();
+
+                    ButtonEnable(true);
                     Show();
                     ClearValue();
                 }
                 else
                 {
                     lblMaessage.Text = "* Username or Password Wrong!";
+                    ButtonEnable(true);
                 }
             }
             catch(Exception ex)
@@ -93,11 +95,38 @@ namespace DMSUpload_Helper
             lblMaessage.Text = string.Empty;
         }
 
+        private void ButtonEnable(bool val)
+        {
+            txtUsername.Enabled = val;
+            txtPassword.Enabled = val;
+
+            btnSignIn.Enabled = val;
+            btnSetting.Enabled = val;
+        }
+
         private void BtnSetting_Click(object sender, EventArgs e)
         {
             frmSetting frmSetting = new frmSetting();
             frmSetting.ShowDialog();
             ClearValue();
+        }
+
+        [DllImport("User32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("User32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void Panel1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private void Label5_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

@@ -34,6 +34,11 @@
             this.btnExit = new FontAwesome.Sharp.IconButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panelContent = new System.Windows.Forms.Panel();
+            this.gbService = new System.Windows.Forms.GroupBox();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtGPFMaintenance = new System.Windows.Forms.TextBox();
+            this.txtGPFDBService = new System.Windows.Forms.TextBox();
             this.btnCancel = new FontAwesome.Sharp.IconButton();
             this.btnConfirm = new FontAwesome.Sharp.IconButton();
             this.lblMassage = new System.Windows.Forms.Label();
@@ -61,6 +66,7 @@
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             this.panelContent.SuspendLayout();
+            this.gbService.SuspendLayout();
             this.gbAPI.SuspendLayout();
             this.gbPath.SuspendLayout();
             this.gbDomain.SuspendLayout();
@@ -76,8 +82,9 @@
             this.panelTitle.Dock = System.Windows.Forms.DockStyle.Top;
             this.panelTitle.Location = new System.Drawing.Point(0, 0);
             this.panelTitle.Name = "panelTitle";
-            this.panelTitle.Size = new System.Drawing.Size(653, 57);
+            this.panelTitle.Size = new System.Drawing.Size(879, 57);
             this.panelTitle.TabIndex = 0;
+            this.panelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitle_MouseDown);
             // 
             // label5
             // 
@@ -89,6 +96,7 @@
             this.label5.Size = new System.Drawing.Size(156, 37);
             this.label5.TabIndex = 5;
             this.label5.Text = "SETTING";
+            this.label5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.label5_MouseDown);
             // 
             // iconPictureBox1
             // 
@@ -102,6 +110,7 @@
             this.iconPictureBox1.Size = new System.Drawing.Size(45, 43);
             this.iconPictureBox1.TabIndex = 7;
             this.iconPictureBox1.TabStop = false;
+            this.iconPictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.iconPictureBox1_MouseDown);
             // 
             // btnExit
             // 
@@ -112,7 +121,7 @@
             this.btnExit.IconColor = System.Drawing.Color.White;
             this.btnExit.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnExit.IconSize = 60;
-            this.btnExit.Location = new System.Drawing.Point(606, 6);
+            this.btnExit.Location = new System.Drawing.Point(831, 7);
             this.btnExit.Name = "btnExit";
             this.btnExit.Size = new System.Drawing.Size(43, 45);
             this.btnExit.TabIndex = 6;
@@ -125,11 +134,12 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel3.Location = new System.Drawing.Point(0, 52);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(653, 5);
+            this.panel3.Size = new System.Drawing.Size(879, 5);
             this.panel3.TabIndex = 1;
             // 
             // panelContent
             // 
+            this.panelContent.Controls.Add(this.gbService);
             this.panelContent.Controls.Add(this.btnCancel);
             this.panelContent.Controls.Add(this.btnConfirm);
             this.panelContent.Controls.Add(this.lblMassage);
@@ -139,8 +149,58 @@
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 57);
             this.panelContent.Name = "panelContent";
-            this.panelContent.Size = new System.Drawing.Size(653, 417);
+            this.panelContent.Size = new System.Drawing.Size(879, 417);
             this.panelContent.TabIndex = 1;
+            // 
+            // gbService
+            // 
+            this.gbService.Controls.Add(this.label9);
+            this.gbService.Controls.Add(this.label13);
+            this.gbService.Controls.Add(this.txtGPFMaintenance);
+            this.gbService.Controls.Add(this.txtGPFDBService);
+            this.gbService.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.gbService.Location = new System.Drawing.Point(12, 27);
+            this.gbService.Name = "gbService";
+            this.gbService.Size = new System.Drawing.Size(428, 186);
+            this.gbService.TabIndex = 5;
+            this.gbService.TabStop = false;
+            this.gbService.Text = "Service Setting";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label9.Location = new System.Drawing.Point(10, 78);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(114, 16);
+            this.label9.TabIndex = 1;
+            this.label9.Text = "GPF Maintenance";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(10, 30);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(146, 16);
+            this.label13.TabIndex = 1;
+            this.label13.Text = "GPF Database Service";
+            // 
+            // txtGPFMaintenance
+            // 
+            this.txtGPFMaintenance.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGPFMaintenance.Location = new System.Drawing.Point(10, 97);
+            this.txtGPFMaintenance.Name = "txtGPFMaintenance";
+            this.txtGPFMaintenance.Size = new System.Drawing.Size(404, 21);
+            this.txtGPFMaintenance.TabIndex = 1;
+            // 
+            // txtGPFDBService
+            // 
+            this.txtGPFDBService.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtGPFDBService.Location = new System.Drawing.Point(10, 49);
+            this.txtGPFDBService.Name = "txtGPFDBService";
+            this.txtGPFDBService.Size = new System.Drawing.Size(404, 21);
+            this.txtGPFDBService.TabIndex = 1;
             // 
             // btnCancel
             // 
@@ -153,7 +213,7 @@
             this.btnCancel.IconColor = System.Drawing.Color.White;
             this.btnCancel.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnCancel.IconSize = 38;
-            this.btnCancel.Location = new System.Drawing.Point(449, 86);
+            this.btnCancel.Location = new System.Drawing.Point(676, 86);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(192, 44);
             this.btnCancel.TabIndex = 4;
@@ -174,7 +234,7 @@
             this.btnConfirm.IconColor = System.Drawing.Color.White;
             this.btnConfirm.IconFont = FontAwesome.Sharp.IconFont.Auto;
             this.btnConfirm.IconSize = 38;
-            this.btnConfirm.Location = new System.Drawing.Point(449, 36);
+            this.btnConfirm.Location = new System.Drawing.Point(676, 36);
             this.btnConfirm.Name = "btnConfirm";
             this.btnConfirm.Size = new System.Drawing.Size(192, 44);
             this.btnConfirm.TabIndex = 3;
@@ -187,7 +247,7 @@
             // 
             this.lblMassage.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblMassage.ForeColor = System.Drawing.Color.Black;
-            this.lblMassage.Location = new System.Drawing.Point(9, 8);
+            this.lblMassage.Location = new System.Drawing.Point(236, 8);
             this.lblMassage.Name = "lblMassage";
             this.lblMassage.Size = new System.Drawing.Size(632, 16);
             this.lblMassage.TabIndex = 2;
@@ -273,7 +333,7 @@
             this.gbPath.Controls.Add(this.txtBDSPath);
             this.gbPath.Controls.Add(this.txtTempPath);
             this.gbPath.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbPath.Location = new System.Drawing.Point(234, 27);
+            this.gbPath.Location = new System.Drawing.Point(453, 219);
             this.gbPath.Name = "gbPath";
             this.gbPath.Size = new System.Drawing.Size(206, 186);
             this.gbPath.TabIndex = 1;
@@ -343,7 +403,7 @@
             this.gbDomain.Controls.Add(this.txtUsername);
             this.gbDomain.Controls.Add(this.txtDomain);
             this.gbDomain.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.gbDomain.Location = new System.Drawing.Point(12, 27);
+            this.gbDomain.Location = new System.Drawing.Point(453, 27);
             this.gbDomain.Name = "gbDomain";
             this.gbDomain.Size = new System.Drawing.Size(206, 186);
             this.gbDomain.TabIndex = 0;
@@ -385,6 +445,7 @@
             this.txtPassword.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.Location = new System.Drawing.Point(10, 145);
             this.txtPassword.Name = "txtPassword";
+            this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(182, 21);
             this.txtPassword.TabIndex = 1;
             // 
@@ -409,7 +470,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.WhiteSmoke;
-            this.ClientSize = new System.Drawing.Size(653, 474);
+            this.ClientSize = new System.Drawing.Size(879, 474);
             this.ControlBox = false;
             this.Controls.Add(this.panelContent);
             this.Controls.Add(this.panelTitle);
@@ -422,6 +483,8 @@
             this.panelTitle.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).EndInit();
             this.panelContent.ResumeLayout(false);
+            this.gbService.ResumeLayout(false);
+            this.gbService.PerformLayout();
             this.gbAPI.ResumeLayout(false);
             this.gbAPI.PerformLayout();
             this.gbPath.ResumeLayout(false);
@@ -464,5 +527,10 @@
         private System.Windows.Forms.Label lblMassage;
         private FontAwesome.Sharp.IconButton btnConfirm;
         private FontAwesome.Sharp.IconButton btnCancel;
+        private System.Windows.Forms.GroupBox gbService;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.TextBox txtGPFMaintenance;
+        private System.Windows.Forms.TextBox txtGPFDBService;
     }
 }

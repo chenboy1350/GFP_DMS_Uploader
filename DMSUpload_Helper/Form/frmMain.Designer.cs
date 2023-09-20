@@ -41,6 +41,7 @@
             this.panelContent = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.rdoANSI = new System.Windows.Forms.RadioButton();
+            this.rdoUTF8 = new System.Windows.Forms.RadioButton();
             this.lblMessageMIS = new System.Windows.Forms.Label();
             this.pgbStatus = new System.Windows.Forms.ProgressBar();
             this.panelFooter = new System.Windows.Forms.Panel();
@@ -56,7 +57,6 @@
             this.btnClear = new FontAwesome.Sharp.IconButton();
             this.btnBrowseDir = new FontAwesome.Sharp.IconButton();
             this.btnBrowseFile = new FontAwesome.Sharp.IconButton();
-            this.rdoUTF8 = new System.Windows.Forms.RadioButton();
             this.txtPathDirectory = new System.Windows.Forms.TextBox();
             this.txtPathFile = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -64,6 +64,7 @@
             this.lblPercent = new System.Windows.Forms.Label();
             this.lblMessage = new System.Windows.Forms.Label();
             this.lblMessageOK = new System.Windows.Forms.Label();
+            this.lblSelectFolder = new System.Windows.Forms.Label();
             this.panelTitle.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.iconPictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -89,6 +90,7 @@
             this.panelTitle.Name = "panelTitle";
             this.panelTitle.Size = new System.Drawing.Size(1200, 80);
             this.panelTitle.TabIndex = 1;
+            this.panelTitle.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PanelTitle_MouseDown);
             // 
             // lblAuthority
             // 
@@ -146,6 +148,7 @@
             this.pictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.pictureBox1.TabIndex = 4;
             this.pictureBox1.TabStop = false;
+            this.pictureBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.PictureBox1_MouseDown);
             // 
             // label5
             // 
@@ -157,6 +160,7 @@
             this.label5.Size = new System.Drawing.Size(500, 64);
             this.label5.TabIndex = 3;
             this.label5.Text = "DMS l UPLOADER";
+            this.label5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Label5_MouseDown);
             // 
             // btnSignOut
             // 
@@ -207,6 +211,7 @@
             this.panelContent.Controls.Add(this.lblPercent);
             this.panelContent.Controls.Add(this.lblMessage);
             this.panelContent.Controls.Add(this.lblMessageOK);
+            this.panelContent.Controls.Add(this.lblSelectFolder);
             this.panelContent.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelContent.Location = new System.Drawing.Point(0, 80);
             this.panelContent.Name = "panelContent";
@@ -237,6 +242,17 @@
             this.rdoANSI.TabStop = true;
             this.rdoANSI.Text = "ANSI";
             this.rdoANSI.UseVisualStyleBackColor = true;
+            // 
+            // rdoUTF8
+            // 
+            this.rdoUTF8.AutoSize = true;
+            this.rdoUTF8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.rdoUTF8.Location = new System.Drawing.Point(94, 31);
+            this.rdoUTF8.Name = "rdoUTF8";
+            this.rdoUTF8.Size = new System.Drawing.Size(72, 24);
+            this.rdoUTF8.TabIndex = 2;
+            this.rdoUTF8.Text = "UTF-8";
+            this.rdoUTF8.UseVisualStyleBackColor = true;
             // 
             // lblMessageMIS
             // 
@@ -431,7 +447,7 @@
             this.btnClear.Name = "btnClear";
             this.btnClear.Size = new System.Drawing.Size(302, 43);
             this.btnClear.TabIndex = 3;
-            this.btnClear.Text = "Clear                  ";
+            this.btnClear.Text = "Clear                    ";
             this.btnClear.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnClear.UseVisualStyleBackColor = false;
             this.btnClear.Click += new System.EventHandler(this.BtnClear_Click);
@@ -450,7 +466,7 @@
             this.btnBrowseDir.Name = "btnBrowseDir";
             this.btnBrowseDir.Size = new System.Drawing.Size(302, 43);
             this.btnBrowseDir.TabIndex = 3;
-            this.btnBrowseDir.Text = "Browse Folder";
+            this.btnBrowseDir.Text = "Browse Folder  ";
             this.btnBrowseDir.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBrowseDir.UseVisualStyleBackColor = false;
             this.btnBrowseDir.Click += new System.EventHandler(this.BtnBrowseDir_Click);
@@ -469,21 +485,10 @@
             this.btnBrowseFile.Name = "btnBrowseFile";
             this.btnBrowseFile.Size = new System.Drawing.Size(302, 43);
             this.btnBrowseFile.TabIndex = 3;
-            this.btnBrowseFile.Text = "Browse Text File";
+            this.btnBrowseFile.Text = "Browse Index File";
             this.btnBrowseFile.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
             this.btnBrowseFile.UseVisualStyleBackColor = false;
             this.btnBrowseFile.Click += new System.EventHandler(this.BtnBrowseFile_Click);
-            // 
-            // rdoUTF8
-            // 
-            this.rdoUTF8.AutoSize = true;
-            this.rdoUTF8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.rdoUTF8.Location = new System.Drawing.Point(94, 31);
-            this.rdoUTF8.Name = "rdoUTF8";
-            this.rdoUTF8.Size = new System.Drawing.Size(72, 24);
-            this.rdoUTF8.TabIndex = 2;
-            this.rdoUTF8.Text = "UTF-8";
-            this.rdoUTF8.UseVisualStyleBackColor = true;
             // 
             // txtPathDirectory
             // 
@@ -492,6 +497,7 @@
             this.txtPathDirectory.Name = "txtPathDirectory";
             this.txtPathDirectory.Size = new System.Drawing.Size(465, 26);
             this.txtPathDirectory.TabIndex = 1;
+            this.txtPathDirectory.TextChanged += new System.EventHandler(this.TxtPathDirectory_TextChanged);
             this.txtPathDirectory.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.TxtPathDirectory_KeyPress);
             // 
             // txtPathFile
@@ -556,6 +562,17 @@
             this.lblMessageOK.TabIndex = 9;
             this.lblMessageOK.Text = "- MESSAGE OK -";
             this.lblMessageOK.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            // 
+            // lblSelectFolder
+            // 
+            this.lblSelectFolder.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblSelectFolder.ForeColor = System.Drawing.Color.Red;
+            this.lblSelectFolder.Location = new System.Drawing.Point(170, 47);
+            this.lblSelectFolder.Name = "lblSelectFolder";
+            this.lblSelectFolder.Size = new System.Drawing.Size(465, 18);
+            this.lblSelectFolder.TabIndex = 11;
+            this.lblSelectFolder.Text = "- TXT MESSAGE -";
+            this.lblSelectFolder.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FrmMain
             // 
@@ -622,5 +639,6 @@
         private System.Windows.Forms.Label lblDepartment;
         private System.Windows.Forms.Label lblUsername;
         private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.Label lblSelectFolder;
     }
 }

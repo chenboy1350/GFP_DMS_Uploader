@@ -1,4 +1,6 @@
 ﻿using DMSUpload_Helper.Models;
+using DMSUpload_Helper.Service.Implement;
+using DMSUpload_Helper.Service.Interface;
 using Microsoft.Extensions.Configuration;
 using System;
 using System.Data;
@@ -8,23 +10,18 @@ namespace DMSUpload_Helper.Library
 {
     public class DMS_DT_BATCH_FILE_DETAIL
     {
+        public IDBConect _dBConect;
         ConnectDB conn = new ConnectDB();
         DataTable dt = new DataTable();
 
         string SQL;
         private readonly string _datasource;
-        private readonly string responseMsg;
-        private readonly string UserSQL;
-        private readonly string PassSQL;
 
         public DMS_DT_BATCH_FILE_DETAIL()
         {
-            GPFMaintenance.GPFMaintenance ObjWeb = new GPFMaintenance.GPFMaintenance();
-            string connStr = string.Empty;
+            _dBConect = new DBConnection();
 
-            ObjWeb.GetParameter1("Share", "DMSNew_CON", ref connStr, ref responseMsg);
-            ObjWeb.GetParameter2("Share", "DMSNew_USER", ref UserSQL, ref PassSQL, ref responseMsg);
-            _datasource = string.Format("{0};User ID={1};Password={2}", connStr, UserSQL, PassSQL);
+            _datasource = _dBConect.GetConnection();
         }
 
         public IDbDataParameter BindParameter(string parameterName, object value)

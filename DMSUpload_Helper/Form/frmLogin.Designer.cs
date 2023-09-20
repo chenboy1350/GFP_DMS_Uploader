@@ -35,6 +35,7 @@
             this.label5 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
@@ -45,7 +46,6 @@
             this.btnSignIn = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.txtUsername = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,6 +64,7 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1184, 70);
             this.panel1.TabIndex = 2;
+            this.panel1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Panel1_MouseDown);
             // 
             // btnSetting
             // 
@@ -107,6 +108,7 @@
             this.label5.Size = new System.Drawing.Size(500, 64);
             this.label5.TabIndex = 4;
             this.label5.Text = "DMS l UPLOADER";
+            this.label5.MouseDown += new System.Windows.Forms.MouseEventHandler(this.Label5_MouseDown);
             // 
             // panel4
             // 
@@ -128,6 +130,19 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1184, 75);
             this.panel2.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("TH SarabunPSK", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.ForeColor = System.Drawing.Color.White;
+            this.label3.Location = new System.Drawing.Point(359, 8);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(433, 44);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "ชั้น 4 เลขที่ 990  ถนนพระราม 4  แขวงสีลม  เขตบางรัก  กรุงเทพมหานคร  10500\r\nโทร.  " +
+    "0-2636-1000  โทรสาร  0-2636-0603,  0-2636-0848";
+            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // label4
             // 
@@ -229,7 +244,6 @@
             this.txtPassword.PasswordChar = '*';
             this.txtPassword.Size = new System.Drawing.Size(403, 31);
             this.txtPassword.TabIndex = 1;
-            this.txtPassword.Text = "1234";
             this.txtPassword.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             // 
             // txtUsername
@@ -239,21 +253,7 @@
             this.txtUsername.Name = "txtUsername";
             this.txtUsername.Size = new System.Drawing.Size(403, 31);
             this.txtUsername.TabIndex = 0;
-            this.txtUsername.Text = "admin";
             this.txtUsername.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("TH SarabunPSK", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.ForeColor = System.Drawing.Color.White;
-            this.label3.Location = new System.Drawing.Point(359, 8);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(433, 44);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "ชั้น 4 เลขที่ 990  ถนนพระราม 4  แขวงสีลม  เขตบางรัก  กรุงเทพมหานคร  10500\r\nโทร.  " +
-    "0-2636-1000  โทรสาร  0-2636-0603,  0-2636-0848";
-            this.label3.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // FrmLogin
             // 

@@ -5,6 +5,7 @@ using System.Data;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -33,6 +34,9 @@ namespace DMSUpload_Helper
             txtTempPath.KeyPress += TextBox_KeyPress;
             txtDFILEPath.KeyPress += TextBox_KeyPress;
             txtBDSPath.KeyPress += TextBox_KeyPress;
+
+            txtGPFDBService.KeyPress += TextBox_KeyPress;
+            txtGPFMaintenance.KeyPress += TextBox_KeyPress;
 
             btnConfirm.BackColor = Color.Gray;
             btnConfirm.ForeColor = Color.White;
@@ -100,6 +104,9 @@ namespace DMSUpload_Helper
                 txtTempPath.Text = Properties.Settings.Default.TempBatchFile;
                 txtBDSPath.Text = Properties.Settings.Default.BDSPath;
                 txtDFILEPath.Text = Properties.Settings.Default.DFILEPath;
+
+                txtGPFDBService.Text = Properties.Settings.Default.DMSUpload_Helper_GPFDBService_GPFDBService;
+                txtGPFMaintenance.Text = Properties.Settings.Default.DMSUpload_Helper_GPFMaintenance_GPFMaintenance;
             }
             catch(Exception ex)
             {
@@ -128,12 +135,39 @@ namespace DMSUpload_Helper
                 Properties.Settings.Default.DFILEPath = txtDFILEPath.Text;
                 Properties.Settings.Default.BDSPath = txtBDSPath.Text;
 
+                Properties.Settings.Default.DMSUpload_Helper_GPFDBService_GPFDBService = txtGPFDBService.Text;
+                Properties.Settings.Default.DMSUpload_Helper_GPFMaintenance_GPFMaintenance = txtGPFMaintenance.Text;
+
                 Properties.Settings.Default.Save();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        [DllImport("User32.DLL", EntryPoint = "ReleaseCapture")]
+        private extern static void ReleaseCapture();
+
+        [DllImport("User32.DLL", EntryPoint = "SendMessage")]
+        private extern static void SendMessage(IntPtr hWnd, int wMsg, int wParam, int lParam);
+
+        private void PanelTitle_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private void label5_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
+        }
+
+        private void iconPictureBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            ReleaseCapture();
+            SendMessage(Handle, 0x112, 0xf012, 0);
         }
     }
 }

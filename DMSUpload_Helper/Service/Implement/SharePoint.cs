@@ -32,8 +32,8 @@ namespace DMSUpload_Helper.Service.Implement
         private string _domain, _ps, _us;
         private IntPtr _token;
 
-        [PermissionSetAttribute(SecurityAction.Demand, Name = "FullTrust")]
-        public void Enter()
+        [PermissionSet(SecurityAction.Demand, Name = "FullTrust")]
+        public void Logon()
         {
             if (IsInContext()) return;
             _token = IntPtr.Zero;
@@ -44,6 +44,19 @@ namespace DMSUpload_Helper.Service.Implement
             _context = identity.Impersonate();
         }
 
+        public void Logout()
+        {
+            if (IsInContext())
+            {
+                _context.Dispose();
+                _context = null;
+                if (!RevertToSelf())
+                {
+                    throw new Win32Exception(Marshal.GetLastWin32Error());
+                }
+            }
+        }
+
         public bool IsInContext()
         {
             return _context != null;
@@ -51,6 +64,9 @@ namespace DMSUpload_Helper.Service.Implement
 
         [DllImport("advapi32.dll", SetLastError = true, CharSet = CharSet.Unicode)]
         internal static extern bool LogonUser(String username, String domain, string password, LogonType logonType, LogonProvider logonProvider, ref IntPtr token);
+
+        [DllImport("advapi32.dll", SetLastError = true)]
+        internal static extern bool RevertToSelf();
 
         public void WrappedImpersonationContext(string domain, string us, string ps)
         {

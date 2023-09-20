@@ -348,14 +348,17 @@
     <Compile Include="Models\TaskData.cs" />
     <Compile Include="Models\TextFormatModel.cs" />
     <Compile Include="Models\UploadFile.cs" />
+    <Compile Include="Models\UserAuthenModel.cs" />
     <Compile Include="Models\VerifyMessageModel.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Service\Implement\AddGovUnit.cs" />
+    <Compile Include="Service\Implement\DBConnection.cs" />
     <Compile Include="Service\Implement\DetectEncode.cs" />
     <Compile Include="Service\Implement\EncryptFile.cs" />
     <Compile Include="Service\Implement\SharePoint.cs" />
     <Compile Include="Service\Interface\IAddGovUnit.cs" />
+    <Compile Include="Service\Interface\IDBConect.cs" />
     <Compile Include="Service\Interface\IDetectEncode.cs" />
     <Compile Include="Service\Interface\IEncryptFile.cs" />
     <Compile Include="Service\Interface\ISharePoint.cs" />
